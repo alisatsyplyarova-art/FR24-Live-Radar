@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.har
+radar_config.json
+captures/
+live_exports/
+*.bin
+*.csv
+*.geojson

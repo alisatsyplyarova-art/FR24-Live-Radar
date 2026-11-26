@@ -46,6 +46,10 @@ CSV_COLUMNS = (
 _EPOCH = datetime(1970, 1, 1, tzinfo=timezone.utc)
 
 
+# --------------------------------------------------------------------------
+# Время
+# --------------------------------------------------------------------------
+
 def format_utc_ms(timestamp_ms: int | None) -> str | None:
     """Unix-время в мс -> 'YYYY-MM-DDTHH:MM:SS.mmmZ' (UTC, без потери мс).
 
@@ -71,6 +75,10 @@ def parse_utc_ms(text: str) -> int:
         + delta.microseconds // 1000
     )
 
+
+# --------------------------------------------------------------------------
+# Сбор данных
+# --------------------------------------------------------------------------
 
 @dataclass
 class AircraftTrack:
@@ -191,6 +199,10 @@ def load_aircraft_tracks(
     return build_aircraft_tracks(decode_dump_feeds(dump_path))
 
 
+# --------------------------------------------------------------------------
+# Вспомогательное
+# --------------------------------------------------------------------------
+
 def _callsign_or_none(callsign: str) -> str | None:
     return callsign or None
 
@@ -211,6 +223,10 @@ def _prepare_dir(directory: str | Path) -> Path:
     path.mkdir(parents=True, exist_ok=True)
     return path
 
+
+# --------------------------------------------------------------------------
+# CSV
+# --------------------------------------------------------------------------
 
 def export_csv(
     aircraft: list[AircraftTrack],
@@ -241,6 +257,10 @@ def export_csv(
 
     return path
 
+
+# --------------------------------------------------------------------------
+# JSON
+# --------------------------------------------------------------------------
 
 def build_json_document(
     aircraft: list[AircraftTrack],
@@ -293,6 +313,10 @@ def export_json(
 
     return path
 
+
+# --------------------------------------------------------------------------
+# GeoJSON
+# --------------------------------------------------------------------------
 
 def build_geojson_document(
     aircraft: list[AircraftTrack],
@@ -351,6 +375,10 @@ def export_geojson(
 
     return path
 
+
+# --------------------------------------------------------------------------
+# Всё сразу
+# --------------------------------------------------------------------------
 
 def export_all(
     dump_path: str | Path = DEFAULT_DUMP,

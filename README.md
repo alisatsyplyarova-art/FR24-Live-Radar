@@ -17,13 +17,14 @@ A lightweight desktop radar for displaying the nearest live aircraft around a se
 
 - `live_collector.py` — FR24 LiveFeed collector with a local read-only API at `http://127.0.0.1:8765/aircraft`.
 - `fr24_radar.py` — desktop radar GUI.
+- `grpc_web.py`, `feed_decoder.py`, `analysis_context.py`, `model.py`, `len_analyzer.py`, `protobuf_parser.py`, `track_export.py`, `dump_loader.py` — collector decoder and export modules.
 - `requirements.txt` — Python package dependencies.
 
-## Important: existing collector modules
+## Local files required for FR24 access
 
-The collector integrates with the decoder/export modules from the existing `C:\\FR24_Collector` project (for example `grpc_web.py`, `feed_decoder.py`, `analysis_context.py`, `model.py`, and `track_export.py`). Those modules and the HAR request template are not duplicated here.
+The repository intentionally does not contain the HAR request template or personal runtime configuration. To connect to FR24, place your own valid `www.flightradar24.com.har` and `radar_config.json` in the project directory, following the format used by your existing setup. Do not publish these files.
 
-To use these two files in the existing project, copy them into `C:\\FR24_Collector`, preserving the other project files and your existing `www.flightradar24.com.har` and `radar_config.json`.
+The collector also writes captures and exports locally; these runtime files are not part of the repository.
 
 ## Install
 
@@ -31,7 +32,7 @@ Open PowerShell in the project directory:
 
 ```powershell
 py -3.14 -m venv venv
-.\\venv\\Scripts\\Activate.ps1
+.\venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
